@@ -1,0 +1,29 @@
+# Terraform ignore file (simple)
+
+# Terraform working directory
+
+.terraform/
+
+# State files
+
+*.tfstate
+*.tfstate.*
+
+# Plan files
+
+*.tfplan
+
+# Variable files (may contain secrets)
+
+*.tfvars
+
+# Logs
+
+*.log
+
+# OS / Editor files
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

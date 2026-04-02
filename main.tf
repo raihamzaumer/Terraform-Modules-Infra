@@ -1,3 +1,6 @@
+#######################################################################################
+#AWS PRIVIDER                                                                         #
+#######################################################################################
 provider "aws" {
   region = var.aws_region
 }
@@ -33,27 +36,25 @@ module "ec2" {
   key_name          = var.ec2_key_name
   my_ip_cidr        = var.my_ip_cidr
 }
-#############################################
-# S3 MODULE
-#############################################
 
+#############################################
+# S3 MODULE CALL
+#############################################
 module "s3_bucket" {
   source = "./modules/s3"
 
-  bucket_name = var.bucket_name
-
-  force_destroy = var.force_destroy
-
-  enable_versioning = var.enable_versioning
-
-  # Public access block
-  block_public_acls       = var.block_public_acls
-  block_public_policy     = var.block_public_policy
-  ignore_public_acls      = var.ignore_public_acls
-  restrict_public_buckets = var.restrict_public_buckets
-
-  # Encryption
-  sse_algorithm = var.sse_algorithm
-
-  tags = var.tags
+  bucket_name                            = var.bucket_name
+  force_destroy                          = var.force_destroy
+  enable_versioning                      = var.enable_versioning
+  sse_algorithm                          = var.sse_algorithm
+  enable_static_website                  = var.enable_static_website
+  index_document                         = var.index_document
+  error_document                         = var.error_document
+  upload_folder_path                     = var.upload_folder_path
+  enable_lifecycle                       = var.enable_lifecycle
+  lifecycle_rule_id                      = var.lifecycle_rule_id
+  lifecycle_prefix                       = var.lifecycle_prefix
+  lifecycle_expiration_days              = var.lifecycle_expiration_days
+  noncurrent_version_expiration_days     = var.noncurrent_version_expiration_days
+  tags                                   = var.tags
 }

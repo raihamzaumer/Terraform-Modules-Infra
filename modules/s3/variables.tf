@@ -1,60 +1,81 @@
 variable "bucket_name" {
-  description = "Name of the S3 bucket"
-  type        = string
+  type = string
 }
 
 variable "force_destroy" {
-  description = "Delete bucket even if it has objects"
-  type        = bool
-  default     = false
+  type    = bool
+  default = false
 }
 
-#############################################
-# VERSIONING
-#############################################
 variable "enable_versioning" {
-  description = "Enable versioning"
-  type        = bool
-  default     = true
-}
-
-#############################################
-# PUBLIC ACCESS BLOCK
-#############################################
-variable "block_public_acls" {
   type    = bool
   default = true
 }
 
-variable "block_public_policy" {
-  type    = bool
-  default = true
-}
-
-variable "ignore_public_acls" {
-  type    = bool
-  default = true
-}
-
-variable "restrict_public_buckets" {
-  type    = bool
-  default = true
-}
-
-#############################################
-# ENCRYPTION
-#############################################
 variable "sse_algorithm" {
-  description = "Encryption algorithm"
-  type        = string
-  default     = "AES256"
+  type    = string
+  default = "AES256"
 }
 
-#############################################
-# TAGS
-#############################################
+variable "enable_static_website" {
+  type    = bool
+  default = false
+}
+
+variable "index_document" {
+  type    = string
+  default = "index.html"
+}
+
+variable "error_document" {
+  type    = string
+  default = "error.html"
+}
+
+variable "upload_folder_path" {
+  type    = string
+  default = ""
+}
+
+variable "enable_lifecycle" {
+  type    = bool
+  default = false
+}
+
+variable "lifecycle_rule_id" {
+  type    = string
+  default = "default-lifecycle-rule"
+}
+
+variable "lifecycle_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "lifecycle_expiration_days" {
+  type    = number
+  default = 30
+}
+
+variable "noncurrent_version_expiration_days" {
+  type    = number
+  default = 30
+}
+
 variable "tags" {
-  description = "Tags for S3 bucket"
-  type        = map(string)
-  default     = {}
+  type    = map(string)
+  default = {}
+}
+
+variable "mime_types" {
+  type = map(string)
+  default = {
+    ".html" = "text/html"
+    ".css"  = "text/css"
+    ".js"   = "application/javascript"
+    ".png"  = "image/png"
+    ".jpg"  = "image/jpeg"
+    ".svg"  = "image/svg+xml"
+    ".json" = "application/json"
+  }
 }

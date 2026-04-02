@@ -82,14 +82,10 @@ variable "my_ip_cidr" {
 }
 
 ##S3 VARIABLE
-variable "region" {
-  type        = string
-  description = "AWS region"
-}
+
 
 variable "bucket_name" {
-  type        = string
-  description = "S3 bucket name"
+  type = string
 }
 
 variable "force_destroy" {
@@ -102,40 +98,57 @@ variable "enable_versioning" {
   default = true
 }
 
-#############################################
-# PUBLIC ACCESS
-#############################################
-variable "block_public_acls" {
-  type    = bool
-  default = true
-}
-
-variable "block_public_policy" {
-  type    = bool
-  default = true
-}
-
-variable "ignore_public_acls" {
-  type    = bool
-  default = true
-}
-
-variable "restrict_public_buckets" {
-  type    = bool
-  default = true
-}
-
-#############################################
-# ENCRYPTION
-#############################################
 variable "sse_algorithm" {
   type    = string
   default = "AES256"
 }
 
-#############################################
-# TAGS
-#############################################
+variable "enable_static_website" {
+  type    = bool
+  default = false
+}
+
+variable "index_document" {
+  type    = string
+  default = "index.html"
+}
+
+variable "error_document" {
+  type    = string
+  default = "error.html"
+}
+
+variable "upload_folder_path" {
+  type    = string
+  default = ""
+}
+
+variable "enable_lifecycle" {
+  type    = bool
+  default = false
+}
+
+variable "lifecycle_rule_id" {
+  type    = string
+  default = "default-rule"
+}
+
+variable "lifecycle_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "lifecycle_expiration_days" {
+  type    = number
+  default = 30
+}
+
+variable "noncurrent_version_expiration_days" {
+  type    = number
+  default = 30
+}
+
 variable "tags" {
-  type = map(string)
+  type    = map(string)
+  default = {}
 }

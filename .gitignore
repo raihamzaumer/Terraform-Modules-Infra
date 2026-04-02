@@ -27,4 +27,4 @@
 Thumbs.db
 .vscode/
 .idea/
-*.lock.hcl
+.terraform.lock.hcl
